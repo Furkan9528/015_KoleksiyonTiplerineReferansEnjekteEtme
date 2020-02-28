@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+
+	<bean id="BeanOgrenci" class="com.furkankara.Ogrenci">
+		<property name="adi" value="Fuat"></property>
+		<property name="soyadi" value="Kara"></property>
+		<property name="bolumu" value="Computer Science"></property>
+		<property name="yasi" value="25"></property>
+	</bean>
+	
+	<bean id="BeanKoleksiyonlar" class="com.furkankara.Koleksiyonlar">
+		<property name="listeler">
+			<list>
+				<value>Hasan Bayat</value>
+				<value>Burak Yilmaz</value>
+				<ref bean="BeanOgrenci" /> <!-- Ustteki beanin bilgisi gelir -->
+				<bean class="com.furkankara.Ogrenci" >
+					<property name="adi" value="Furkan"></property>
+					<property name="soyadi" value="Kara"></property>
+					<property name="bolumu" value="Computer Engineering"></property>
+					<property name="yasi" value="25"></property>
+				</bean>
+			</list>	
+		</property>
+		
+		<property name="setler">
+			<set>
+				<value>Hasan Bayat</value>
+				<ref bean="BeanOgrenci" />
+				<value>Burak Yilmaz</value>
+				<bean class="com.furkankara.Ogrenci">
+					<property name="adi" value="Furkan"></property>
+					<property name="soyadi" value="Kara"></property>
+					<property name="bolumu" value="Computer Engineering"></property>
+					<property name="yasi" value="25"></property>
+				</bean>
+	
+			</set>	
+		</property>
+		
+		<property name="maplar">
+			<map>
+				<entry key="JSP" value="Sinan Karakaya"></entry>
+				<entry key="JSF" value="Burak Yilmaz"></entry>
+				<entry key="Spring" value-ref="BeanOgrenci"></entry>
+				<entry key="Hibetnate">
+					<bean class="com.furkankara.Ogrenci">
+						<property name="adi" value="Mutlu"></property>
+						<property name="soyadi" value="Sancaktutar"></property>
+						<property name="bolumu" value="Organizator"></property>
+						<property name="yasi" value="27"></property>
+					</bean>
+				</entry>
+			
+			
+			</map>
+		</property>
+		<property name="propertiesler">
+			<props>
+				<prop key="WS">Ugur Ozalp</prop>
+				<prop key="Android">Mert Bozkurt</prop>
+			</props>
+		</property>
+		
+	</bean>
+</beans>
